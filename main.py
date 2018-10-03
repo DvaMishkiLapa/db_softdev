@@ -26,6 +26,7 @@ class ExampleApp(QtWidgets.QMainWindow, ui.Ui_MainWindow):
                 self.projects_table.setItem(row_pos, i, QtWidgets.QTableWidgetItem(str(x)))
                 i += 1
         
+        # buttons events
         self.workers_table.itemSelectionChanged.connect(self.current_projects_update)
         self.add_worker.clicked.connect(self.add_worker_click)
         self.del_worker.clicked.connect(self.del_worker_click)
@@ -47,6 +48,14 @@ class ExampleApp(QtWidgets.QMainWindow, ui.Ui_MainWindow):
         self.current_projects_table.setRowCount(0)
         items = self.workers_table.selectedItems()
         try:
+            if items[4].text() == 'Уборщик':
+                self.new_inproject.setEnabled(False)
+                self.del_inproject.setEnabled(False)
+                self.project_box.setEnabled(False)
+            else:
+                self.new_inproject.setEnabled(True)
+                self.del_inproject.setEnabled(True)
+                self.project_box.setEnabled(True)
             project_id = str(items[0].text())
         except IndexError:
             return

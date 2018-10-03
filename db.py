@@ -46,7 +46,7 @@ class DBManager():
             return self._query("INSERT INTO projects VALUES ('{}', '{}', '{}')".format(*project_data))
         except:
             return []
-    
+
     def del_inproject(self, project_id):
         return self._query("DELETE FROM data WHERE project_id='{}'".format(project_id))
 
