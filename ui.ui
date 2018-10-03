@@ -28,11 +28,24 @@
     <height>16777215</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>Разработка программного обеспечения</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>C:/Windows/System32/@AppHelpToast.png</normaloff>C:/Windows/System32/@AppHelpToast.png</iconset>
+  </property>
   <property name="windowOpacity">
    <double>1.000000000000000</double>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>32</width>
+    <height>32</height>
+   </size>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -54,7 +67,7 @@
     <item row="0" column="1">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -95,11 +108,20 @@
         </item>
         <item row="5" column="0" colspan="5">
          <widget class="QTableWidget" name="current_projects_table">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
           </property>
           <column>
            <property name="text">
@@ -127,6 +149,12 @@
         </item>
         <item row="3" column="3">
          <widget class="QPushButton" name="add_worker">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
           <property name="text">
            <string>Добавить</string>
           </property>
@@ -134,6 +162,24 @@
         </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="save_workers">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="sizeIncrement">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="text">
            <string>Сохранить изменения</string>
           </property>
@@ -156,6 +202,9 @@
          <widget class="QTableWidget" name="workers_table">
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="gridStyle">
+           <enum>Qt::SolidLine</enum>
           </property>
           <column>
            <property name="text">
