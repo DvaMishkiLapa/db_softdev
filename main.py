@@ -17,7 +17,6 @@ class ExampleApp(QtWidgets.QMainWindow, ui.Ui_MainWindow):
             for x in worker:
                 self.workers_table.setItem(row_pos, i, QtWidgets.QTableWidgetItem(str(x)))
                 i += 1
-        
         for project in dbm.get_projects():
             row_pos = self.projects_table.rowCount()
             self.projects_table.insertRow(row_pos)
@@ -25,13 +24,13 @@ class ExampleApp(QtWidgets.QMainWindow, ui.Ui_MainWindow):
             for x in project:
                 self.projects_table.setItem(row_pos, i, QtWidgets.QTableWidgetItem(str(x)))
                 i += 1
-        
+
         # buttons events
         self.workers_table.itemSelectionChanged.connect(self.current_projects_update)
         self.add_worker.clicked.connect(self.add_worker_click)
         self.del_worker.clicked.connect(self.del_worker_click)
         self.save_workers.clicked.connect(self.save_workers_click)
-        
+
         self.add_project.clicked.connect(self.add_project_click)
         self.del_project.clicked.connect(self.del_project_click)
         self.save_projects.clicked.connect(self.save_project_click)
@@ -47,18 +46,14 @@ class ExampleApp(QtWidgets.QMainWindow, ui.Ui_MainWindow):
     def current_projects_update(self):
         self.current_projects_table.setRowCount(0)
         items = self.workers_table.selectedItems()
-        try:
-            if items[4].text() == 'Уборщик':
-                self.new_inproject.setEnabled(False)
-                self.del_inproject.setEnabled(False)
-                self.project_box.setEnabled(False)
-            else:
-                self.new_inproject.setEnabled(True)
-                self.del_inproject.setEnabled(True)
-                self.project_box.setEnabled(True)
-            project_id = str(items[0].text())
-        except IndexError:
+        if not items:
             return
+        for x in (self.new_inproject, self.del_inproject, self.project_box):
+            x.setEnabled(True)
+        if items[4].text() == 'Уборщик':
+            for x in (self.new_inproject, self.del_inproject, self.project_box):
+                x.setEnabled(False)
+        project_id = str(items[0].text())
         for project in dbm.get_current_projects(project_id):
             row_pos = self.current_projects_table.rowCount()
             self.current_projects_table.insertRow(row_pos)
